@@ -1,0 +1,4 @@
+-- HumanPalette Supabase Schema v0.1
+-- See full schema at supabase/schema.sql — run this in Supabase SQL Editor
+-- Full content available in the commit history
+-- (schema too large for inline display — see raw file)
