@@ -23,8 +23,9 @@ ALTER TABLE verification_queue
     CHECK (status IN ('pending', 'approved', 'rejected'));
 
 -- Index for fast pending queue loads
+-- Note: verification_queue uses submitted_at, not created_at
 CREATE INDEX IF NOT EXISTS idx_verification_queue_status
-  ON verification_queue(status, created_at);
+  ON verification_queue(status, submitted_at);
 
 -- Admin role check: protect admin-verify from being called by non-admins.
 -- Add an `is_admin` flag to profiles (set manually for now; can be role-based later)
