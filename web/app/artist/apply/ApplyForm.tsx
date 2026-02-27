@@ -1,15 +1,22 @@
 'use client';
 
-import { useActionState } from 'react';
+import { useTransition, useState } from 'react';
 import { submitArtistApplication } from './actions';
 
-const initialState = { error: undefined, success: false };
+type State = { error?: string; success?: boolean } | null;
 
 export default function ApplyForm() {
-  const [state, formAction, pending] = useActionState(
-    submitArtistApplication,
-    initialState
-  );
+  const [isPending, startTransition] = useTransition();
+  const [state, setState] = useState<State>(null);
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    startTransition(async () => {
+      const result = await submitArtistApplication(formData);
+      setState(result);
+    });
+  }
 
   if (state?.success) {
     return (
@@ -25,7 +32,7 @@ export default function ApplyForm() {
   }
 
   return (
-    <form action={formAction} className="flex flex-col gap-4">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       <div>
         <label className="text-sm text-gray-400 block mb-1.5">Your name</label>
         <input
@@ -73,10 +80,10 @@ export default function ApplyForm() {
 
       <button
         type="submit"
-        disabled={pending}
+        disabled={isPending}
         className="mt-2 bg-violet-600 hover:bg-violet-500 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold px-6 py-3.5 rounded-xl transition-colors text-sm"
       >
-        {pending ? 'Submitting…' : 'Submit Application'}
+        {isPending ? 'Submitting…' : 'Submit Application'}
       </button>
 
       <p className="text-gray-600 text-xs text-center mt-2">
