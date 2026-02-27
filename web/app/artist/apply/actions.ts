@@ -20,7 +20,12 @@ export async function submitArtistApplication(formData: FormData) {
     return { error: 'Server configuration error. Please try again later.' };
   }
 
-  const supabase = createClient(supabaseUrl, serviceRoleKey);
+  const supabase = createClient(supabaseUrl, serviceRoleKey, {
+    auth: {
+      persistSession: false,
+      autoRefreshToken: false,
+    },
+  });
 
   const { error } = await supabase
     .from('artist_applications')
