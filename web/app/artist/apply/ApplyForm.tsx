@@ -56,7 +56,7 @@ export default function ApplyForm() {
       <div>
         <label className="text-sm text-gray-400 block mb-1.5">Portfolio link</label>
         <input
-          type="url"
+          type="text"
           name="portfolio"
           placeholder="instagram.com/yourhandle or portfolio site"
           className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-violet-500 transition-colors text-sm"
