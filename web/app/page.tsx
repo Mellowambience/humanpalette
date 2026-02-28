@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import WaitlistForm from './waitlist/WaitlistForm';
 
 export default function HomePage() {
   return (
@@ -35,34 +35,18 @@ export default function HomePage() {
         <p className="text-gray-400 text-lg max-w-md mb-10 leading-relaxed">
           HumanPalette is a swipe-native marketplace for human-made art only.
           Every piece is AI-screened and attested on Base — so collectors know
-          exactly what they're buying.
+          exactly what they&apos;re buying.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-3 w-full max-w-xs sm:max-w-none sm:w-auto">
-          <a
-            href="/artist/apply"
-            className="inline-flex items-center justify-center gap-2 bg-violet-600 hover:bg-violet-500 text-white font-semibold px-7 py-3.5 rounded-xl transition-colors"
-          >
-            🎨 Join as an Artist
-          </a>
-          <a
-            href="/artist"
-            className="inline-flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-semibold px-7 py-3.5 rounded-xl transition-colors"
-          >
-            Browse Art
-          </a>
-        </div>
-
-        <p className="text-gray-600 text-sm mt-5">
-          Free to apply · No App Store required · Web beta live now
-        </p>
+        {/* Waitlist form replaces old CTA buttons */}
+        <WaitlistForm />
       </section>
 
       {/* Trust strip */}
       <section className="border-t border-white/5 px-6 py-12">
         <div className="max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
           <div>
-            <div className="text-2xl mb-2">🛡️</div>
+            <div className="text-2xl mb-2">🛡️&#xfe0f;</div>
             <h3 className="font-semibold text-white mb-1">Human Verified</h3>
             <p className="text-gray-500 text-sm">
               Every piece goes through AI detection + manual review before the
@@ -79,7 +63,7 @@ export default function HomePage() {
           </div>
           <div>
             <div className="text-2xl mb-2">💸</div>
-            <h3 className="font-semibold text-white mb-1">Buy & Commission</h3>
+            <h3 className="font-semibold text-white mb-1">Buy &amp; Commission</h3>
             <p className="text-gray-500 text-sm">
               Collectors can buy existing work or open a commission request — all
               in one swipe flow.
